@@ -18,7 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     manager: DataTypes.STRING,
     asignedTo: DataTypes.STRING,
-    status: DataTypes.STRING
+    status: DataTypes.STRING,    
+    userId: DataTypes.INTEGER,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Project',

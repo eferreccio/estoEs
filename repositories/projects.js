@@ -17,10 +17,25 @@ const getOneProject = async (id) => {
     const project = await db.Project.findByPk(id);
     
     return project;
-  }
+}
 
+const addProject = async (project) => {
+  
+    const newProject = await db.Project.create(project);
+    return newProject;
+   
+}
+
+const removeProject = async (id) => {
+  
+    const deletedProject = await db.Project.destroy({ where: { id: id } });
+    return deletedProject;
+
+}
 
 module.exports = {
     getAllProjects,
-    getOneProject
+    getOneProject,
+    addProject,
+    removeProject
 }; 
