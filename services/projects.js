@@ -1,4 +1,4 @@
-const { getAllProjects, getOneProject, addProject, removeProject } = require('../repositories/projects');
+const { getAllProjects, getOneProject, addProject, removeProject, searchProject } = require('../repositories/projects');
 
 const projectsServiceGetAll = async(page) => {
     const news = await getAllProjects(page);
@@ -21,9 +21,16 @@ const remove = async (id) => {
     return deletedProject;
   };
 
+const search = async (text) => {
+    const searchedProject = await searchProject(text);
+    if (!searchedProject) throw { name: 'Project not found', code: 404 };
+    return searchedProject;
+  };
+
 module.exports = { 
     projectsServiceGetAll,
     projectsServiceGetOne,
     save,
-    remove
+    remove,
+    search
 };

@@ -1,5 +1,6 @@
 const { pagination } = require('../helpers/pagination');
 const db = require('../database/models');
+const Op = db.Sequelize.Op;
 
 
 const getAllProjects = async (page = 0, limit = 4) => {
@@ -33,9 +34,21 @@ const removeProject = async (id) => {
 
 }
 
+const searchProject = async (text) => {
+  
+  const searchedProject = await db.Project.findAll({
+    where: {
+      name: { [Op.like]: '%' + text + '%' }
+    }
+  });
+  return searchedProject;
+
+}
+
 module.exports = {
     getAllProjects,
     getOneProject,
     addProject,
-    removeProject
+    removeProject,
+    searchProject
 }; 

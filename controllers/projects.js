@@ -74,9 +74,34 @@ const remove = async(req, res) => {
   }
 };
 
+const search = async(req, res) => {
+
+  try {
+    const text = req.query.name;
+
+    const project = await serviceProject.search(text);
+
+        if (project === null) {
+            res.status(404).json({ msg: 'not found' });
+        }
+        res.status(200).json({
+          project
+        });
+
+  } catch (error) {
+    return res.status(500).json({
+      msg:'something was wrong, please check it'
+    })
+  }
+};
+  
+
+
+
 module.exports = {
     list,
     detail,
     create,
-    remove
+    remove,
+    search
 };
