@@ -3,8 +3,11 @@ const router = express.Router();
 
 const projectsController = require('../controllers/projects')
 
+router.get('/search', projectsController.search);
 router.get('/', projectsController.list);
 router.get('/:id', projectsController.detail);
+router.post('/create', projectsController.create);
+router.delete('/:id', projectsController.remove);
 
 
 module.exports = router;
